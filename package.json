@@ -13,5 +13,19 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Mapbox",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mapbox/dynalite-tape.git"
+  },
+  "keywords": [
+    "dynalite",
+    "tape",
+    "test",
+    "dynamodb"
+  ],
+  "bugs": {
+    "url": "https://github.com/mapbox/dynalite-tape/issues"
+  },
+  "homepage": "https://github.com/mapbox/dynalite-tape#readme"
 }
