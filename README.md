@@ -1,15 +1,33 @@
 # dynalite-tape
 
-This is a simple wrapper for dynalite that takes and returns a tape interface.
+The goal of this repo is to make setupping and tearing down tests easy.
 
-The main goal of this module is to let you setup one dynalite instance to be used by many tape interface testing frameworks.
+This is optimized for working with dynamodb tables
+
 
 ## Usage
 
 ```js
-var opts = {}; // the same options available on dynalite
-var dynaliteTape = require('dynalite-tape')(opts);
-var test = dynaliteTape(require('tape'));
+var tape = require('tape');
+
+//dynalite-tape takes `tape` and returns a function
+var createTestFramework = require('dynalite-tape')(tape);
+
+// the createTestFramework function takes n `suite specs`
+// a `suite-spec` must have a `name` and one or more of `tables`, `setup` and `teardown`
+var suiteOne = {
+  name: 'suite-one',
+  tables: [{ ... dynamodb table spec ... }],
+  setup: function(cb) { setTimeout(cb); },
+  teardown: function(cb) { setTimeout(cb); }
+};
+
+var suiteTwo = {
+  name: 'suite-two',
+  teardown: function(cb) { setTimeout(cb); }
+};
+
+var test = createTestFramework(suiteOne, suiteTwo);
 
 test('a test', function(assert) {
   assert.pass('a test ran');
@@ -27,20 +45,30 @@ The above code will result in an output that looks like this:
 
 ```txt
 TAP version 13
-# [setup dynalite]
 # a test
-ok 1 a test ran
-# [teardown dynalite]
-# [setup dynalite]
+# setup
+ok 1 dynalite
+ok 2 suite-one
+# test
+ok 3 a test ran
+# teardown
+ok 4 suite-two
+ok 5 suite-one
+ok 6 dynalite
 # b test
-ok 2 b test ran
-# [teardown dynalite]
-dynalite is being closed
-dynalite is closed
+# setup
+ok 7 dynalite
+ok 8 suite-one
+# test
+ok 9 b test ran
+# teardown
+ok 10 suite-two
+ok 11 suite-one
+ok 12 dynalite
 
-1..2
-# tests 2
-# pass  2
+1..12
+# tests 12
+# pass  12
 
 # ok
 ```
