@@ -1,0 +1,84 @@
+
+> @mapbox/dynalite-tape@1.0.0 unit /Users/whittemore/mapbox/dynalite-tape
+> node test/unit.js
+
+TAP version 13
+# a passing test
+# setup
+ok 1 dynalite
+ok 2 table-setup-teardown
+ok 3 table-setup
+ok 4 table-teardown
+ok 5 setup-teardown
+ok 6 just-setup
+# test
+ok 7 (unnamed assert)
+# teardown
+ok 8 just-teardown
+ok 9 setup-teardown
+ok 10 table-teardown
+ok 11 table-setup-teardown
+ok 12 dynalite
+# a failing test
+# setup
+ok 13 dynalite
+ok 14 table-setup-teardown
+ok 15 table-setup
+ok 16 table-teardown
+ok 17 setup-teardown
+ok 18 just-setup
+# test
+not ok 19 (unnamed assert)
+  ---
+    operator: fail
+    at: Test.<anonymous> (/Users/whittemore/mapbox/dynalite-tape/test/pass-fail-error.test.js:21:10)
+  ...
+# teardown
+ok 20 just-teardown
+ok 21 setup-teardown
+ok 22 table-teardown
+ok 23 table-setup-teardown
+ok 24 dynalite
+# an errored test
+# setup
+ok 25 dynalite
+ok 26 table-setup-teardown
+ok 27 table-setup
+ok 28 table-teardown
+ok 29 setup-teardown
+ok 30 just-setup
+# test
+not ok 31 Error: just a test
+  ---
+    operator: error
+    expected: |-
+      undefined
+    actual: |-
+      [Error: just a test]
+    at: Test.<anonymous> (/Users/whittemore/mapbox/dynalite-tape/test/pass-fail-error.test.js:26:10)
+    stack: |-
+      Error: just a test
+          at Test.<anonymous> (/Users/whittemore/mapbox/dynalite-tape/test/pass-fail-error.test.js:26:14)
+          at Test.bound [as _cb] (/Users/whittemore/mapbox/dynalite-tape/node_modules/tape/lib/test.js:66:32)
+          at Test.run (/Users/whittemore/mapbox/dynalite-tape/node_modules/tape/lib/test.js:85:10)
+          at Test.bound [as run] (/Users/whittemore/mapbox/dynalite-tape/node_modules/tape/lib/test.js:66:32)
+          at Test._end (/Users/whittemore/mapbox/dynalite-tape/node_modules/tape/lib/test.js:154:11)
+          at Test.bound [as _end] (/Users/whittemore/mapbox/dynalite-tape/node_modules/tape/lib/test.js:66:32)
+          at Test.<anonymous> (/Users/whittemore/mapbox/dynalite-tape/node_modules/tape/lib/test.js:153:40)
+          at emitNone (events.js:67:13)
+          at Test.emit (events.js:166:7)
+          at Test.bound [as emit] (/Users/whittemore/mapbox/dynalite-tape/node_modules/tape/lib/test.js:66:32)
+  ...
+# teardown
+ok 32 just-teardown
+ok 33 setup-teardown
+ok 34 table-teardown
+ok 35 table-setup-teardown
+ok 36 dynalite
+
+1..36
+# tests 36
+# pass  34
+# fail  2
+
+

@@ -6,11 +6,7 @@ module.exports = function() {
   
   var out = {};
 
-  out.name = 'setup-teardown';
-
-  out.setup = function(cb) {
-    setTimeout(cb, 0);
-  };
+  out.name = 'just-teardown';
   
   out.teardown = function(cb) {
     setTimeout(cb, 0);

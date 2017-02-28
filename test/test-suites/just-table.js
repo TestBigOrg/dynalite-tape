@@ -6,15 +6,9 @@ module.exports = function() {
   
   var out = {};
 
-  out.name = 'setup-teardown';
+  var tableName = out.name = 'just-table';
 
-  out.setup = function(cb) {
-    setTimeout(cb, 0);
-  };
-  
-  out.teardown = function(cb) {
-    setTimeout(cb, 0);
-  };
+  out.tables = [makeTable(tableName)];
 
   return out;
 

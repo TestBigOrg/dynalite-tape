@@ -10,7 +10,11 @@
     "tape": "^4.6.3"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "unit": "node test/unit.js",
+    "new-fixture": "npm run unit > test/fixtures/new",
+    "old-fixture": "npm run unit > test/fixtures/old",
+    "pretest": "npm run new-fixture",
+    "test": "node test/error-on-change.js"
   },
   "author": "Mapbox",
   "license": "ISC",

@@ -6,19 +6,23 @@ module.exports = function() {
   
   var out = {};
 
-  out.tables = [makeTable('table-setup')];
+  out.name = 'table-setup';
 
-  var tableName = out.tables[0].TableName;
+  var tableName = 'table-setup';
+  out.tables = [makeTable(tableName)];
 
-  out.setup = function(config, cb) {
+  var endpoint = 'http://localhost:4567';
+
+  out.setup = function(cb) {
     var dyno = Dyno({
-      endpoint: config.endpoint,
-      table: tableName
+      endpoint: endpoint,
+      table: tableName,
+      region: 'test'
     });
 
-    dyno.insertItem(makeItem(), cb);
+    dyno.putItem({ Item: makeItem() }, cb);
   };
-
+  
   return out;
 
 };
